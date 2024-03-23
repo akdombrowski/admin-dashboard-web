@@ -1,4 +1,4 @@
-# guide-admin-dashboard
+# Health Coach Admin Dashboard
 
 This is a dashboard web app built with NextJS.
 
