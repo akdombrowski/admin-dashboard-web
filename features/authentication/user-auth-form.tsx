@@ -13,9 +13,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
   async function onSubmit(event: React.SyntheticEvent) {
+    // TODO:  Add auth validator
     event.preventDefault()
     setIsLoading(true)
-
     setTimeout(() => {
       setIsLoading(false)
     }, 3000)
