@@ -1,8 +1,9 @@
 import { Metadata } from "next"
-
-
 import { columns } from "../features/users/components/columns"
 import { DataTable } from "../features/users/components/data-table"
+import { Button } from "../components/ui/button"
+
+// TODO:  Add functionality to the logout button.
 
 export const metadata: Metadata = {
   title: "Users",
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 }
 
 // TODO:  Fetch the db to get the users.
-
 const users = [
     {
         "name": "Maurice Stevenson",
@@ -98,6 +98,9 @@ export default function UsersPage() {
               Here&apos;s a quick overview of your clients.
             </p>
           </div>
+          <Button variant="outline">
+            Logout
+          </Button>
         </div>
         <DataTable data={users} columns={columns} />
       </div>
