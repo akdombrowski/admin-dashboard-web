@@ -1,29 +1,23 @@
-import { Metadata } from "next"
-import Image from "next/image"
+"use client"
 
-import { Button } from "../components/ui/button"
+import { Button } from "../../components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../components/ui/card"
+} from "../../components/ui/card"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../components/ui/tabs"
-import { Activity } from "../features/profile/components/activity"
-import { Messages } from "../features/profile/components/messages"
+} from "../../components/ui/tabs"
+import { Activity } from "../../features/profile/components/activity"
+import { Messages } from "../../features/profile/components/messages"
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
-}
-
-export default function DashboardPage() {
+export default function Profile() {
   return (
     <>
       <div className="hidden flex-col md:flex">
