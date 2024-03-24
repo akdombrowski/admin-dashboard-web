@@ -1,3 +1,5 @@
+"use client"
+
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 const data = Array.from({ length: 10 }, (_, i) => ({

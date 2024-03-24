@@ -1,17 +1,12 @@
-import { Metadata } from "next"
-import { columns } from "../features/users/components/columns"
-import { DataTable } from "../features/users/components/data-table"
-import { Button } from "../components/ui/button"
+"use client"
+
+import { columns } from "../../features/users/components/columns"
+import { DataTable } from "../../features/users/components/data-table"
+import { Button } from "../../components/ui/button"
 
 // TODO:  Add functionality to the logout button.
-
-export const metadata: Metadata = {
-  title: "Users",
-  description: "A user tracker to quickly display all users.",
-}
-
-// TODO:  Fetch the db to get the users.
-const users = [
+export default function Users() {
+  const users = [
     {
         "name": "Maurice Stevenson",
         "phone": "873-726-2391",
@@ -83,9 +78,6 @@ const users = [
         "intake": "In Progress"
     }
 ]
-
-export default function UsersPage() {
-
   return (
     <>
       <div className="md:hidden">
