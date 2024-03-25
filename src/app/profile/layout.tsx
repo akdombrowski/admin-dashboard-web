@@ -1,27 +1,27 @@
 "use client"
 
-import { Button } from "../../components/ui/button"
+import { Button } from "@/components/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card"
+} from "@/components/card"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "../../components/ui/tabs"
-import { Activity } from "../../features/profile/components/activity"
-import { Messages } from "../../features/profile/components/messages"
+} from "@/components/tabs"
+import { Activity } from "@/features/profile/components/activity"
+import { Messages } from "@/features/profile/components/messages"
 
 export default function Profile() {
   return (
     <>
       <div className="hidden flex-col md:flex">
-      <div className="border-b">
+        <div className="border-b">
           <div className="flex h-16 items-center px-4">
             <Button variant="outline">Go back to dashboard</Button>
             <div className="ml-auto flex items-center space-x-4">
@@ -47,7 +47,7 @@ export default function Profile() {
             </TabsList>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <Card>
+                <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Intake Process
@@ -63,7 +63,7 @@ export default function Profile() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                        Age
+                      Age
                     </CardTitle>
                   </CardHeader>
                   <CardContent>

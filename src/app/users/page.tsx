@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 
 // TODO:  Fetch data here.
 
-export default async function UserList() {  
-  return <Users />
+export default async function UserList() {
+    return <Users />
 }
