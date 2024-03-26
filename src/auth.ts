@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import Nodemailer from "next-auth/providers/nodemailer";
 
 export const {
   handlers: { GET, POST },
@@ -27,6 +26,14 @@ export const {
         return profile.email_verified;
       }
 
+      console.error(
+        "signin",
+        "\n",
+        "provider:",
+        account.provider,
+        " email_verified:",
+        profile.email_verified
+      );
       // false makes sure the email has been verified and the user has
       // used Google to authn
       return false;
