@@ -7,10 +7,6 @@ import { UserAuthForm } from "@/features/authentication/user-auth-form"
 export default function AuthenticationPage() {
   return (
     <>
-      <div className="md:hidden">
-
-      </div>
-
       <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           // TODO: Change this into a proper link when clicking login.
@@ -34,7 +30,7 @@ export default function AuthenticationPage() {
                 Create an account
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
+                Login with your credentials to create your account
               </p>
             </div>
             <UserAuthForm />
