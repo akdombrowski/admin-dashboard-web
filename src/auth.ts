@@ -39,4 +39,7 @@ export const {
       return false;
     },
   },
+  pages: {
+    signIn: "/signin",
+  },
 });
