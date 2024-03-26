@@ -1,16 +1,35 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import Nodemailer from "next-auth/providers/nodemailer"
-
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import Nodemailer from "next-auth/providers/nodemailer";
 
 export const {
-    handlers: { GET, POST },
-    auth,
+  handlers: { GET, POST },
+  auth,
 } = NextAuth({
-    providers: [GoogleProvider({
-
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    Nodemailer({
+    // Nodemailer({}),
+  ],
+  callbacks: {
+    /**
+     * Authjs docs on signIn callback:
+     * https://authjs.dev/guides/basics/callbacks#sign-in-callback
+     */
+    signIn: async ({ account, profile }): Promise<string | boolean> => {
+      // Check if Google has verified the user's email, so that we can trust the
+      // email belongs to the current authenticated user.
+      // This is a special property that Google returns
+      // https://authjs.dev/reference/core/providers/google
+      if (account.provider === "google") {
+        return profile.email_verified;
+      }
 
-    })],
-})
+      // false makes sure the email has been verified and the user has
+      // used Google to authn
+      return false;
+    },
+  },
+});
