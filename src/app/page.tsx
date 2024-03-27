@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function AuthenticationPage() {
   const session = await auth();
