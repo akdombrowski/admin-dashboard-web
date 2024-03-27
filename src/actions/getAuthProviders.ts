@@ -1,15 +1,21 @@
+"use server";
+
 /**
  * next-auth doesn't export this type for some reason
  */
-export interface AuthProvidersType {
+export interface AuthProviderType {
   // 'google' auth provider shown as example in comments
-  providerName: {
-    id: string; // 'google'
-    name: string; //'Google',
-    type: string; //'oidc',
-    signinUrl: string; //'http://localhost:3000/api/auth/signin/google',
-    callbackUrl: string; //'http://localhost:3000/api/auth/callback/google'
-  };
+
+  id: string; // 'google'
+  name: string; //'Google',
+  type: string; //'oidc',
+  signinUrl: string; //'http://localhost:3000/api/auth/signin/google',
+  callbackUrl: string; //'http://localhost:3000/api/auth/callback/google'
+
+}
+
+export interface AuthProvidersType {
+  [key: string]: AuthProviderType;
 }
 
 /**

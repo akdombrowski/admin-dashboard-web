@@ -1,3 +1,5 @@
+"use server";
+
 /**
  * Uses Unsplash's API to get a random image in a certain category, defaulting to 'fitness'
  *

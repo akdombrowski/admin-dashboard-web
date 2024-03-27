@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 
 import { columns } from "@/features/users/components/columns";
 import { DataTable } from "@/features/users/components/data-table";
-import { Button } from "@/components/button";
+
+import Button from "@mui/material/Button";
 import Link from "next/link";
 
 export default async function Users() {
@@ -109,7 +110,7 @@ export default async function Users() {
             </p>
           </div>
           <Link href="api/auth/signout">
-            <Button variant="outline">Logout</Button>
+            <Button variant="contained">Logout</Button>
           </Link>
         </div>
         <DataTable data={users} columns={columns} />
