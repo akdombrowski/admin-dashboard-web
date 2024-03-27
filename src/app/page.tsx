@@ -13,7 +13,7 @@ import Image from "next/image";
 
 import getRNDImg from "@/actions/getRNDImg";
 
-export default async function AuthenticationPage() {
+export default async function HomePage() {
   const session = await auth();
   const img = await getRNDImg();
 
