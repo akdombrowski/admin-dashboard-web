@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -22,13 +23,29 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/ui/components/*"],
-      "@/features/*": ["./src/ui/features/*"],
-      "@/authPages/*": ["./src/ui/auth-pages/*"],
-      "@/lib/*": ["./src/lib/*"],
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components/*": [
+        "./src/ui/components/*"
+      ],
+      "@/features/*": [
+        "./src/ui/features/*"
+      ],
+      "@/auth-pages/*": [
+        "./src/ui/auth-pages/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/styles/*": [
+        "./styles/*"
+      ],
+      "@/actions/*": [
+        "./src/actions/*"
+      ]
     },
-    "baseUrl": ".",
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
