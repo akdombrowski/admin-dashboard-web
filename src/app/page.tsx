@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -7,10 +6,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Copyright from "@/components/copyright";
 
 import Image from "next/image";
