@@ -1,26 +1,107 @@
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
-export default async function AuthenticationPage() {
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Unstable_Grid2";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Copyright from "@/components/copyright";
+
+import Image from "next/image";
+
+import getRNDImg from "@/actions/getRNDImg";
+
+export default async function HomePage() {
   const session = await auth();
+  const img = await getRNDImg();
 
   if (session) {
     redirect("/users");
   }
 
   return (
-    <div
-      id="rootcontainer"
-      className="container flex flex-wrap justify-center items-stretch h-screen space-y-20"
-    >
-      <div className="w-screen p-20 text-9xl font-black text-center">Guide</div>
-      <div className="basis-full text-5xl text-center p-20 ">
-        <Link href="/api/auth/signin" className="py-1 px-6 border-4 border-black border-solid">
-          Login
-        </Link>
-      </div>
-    </div>
+    <Container maxWidth={false} sx={{ height: "100vh" }}>
+      <Grid
+        height="100%"
+        container
+        justifyContent="center"
+        alignItems="stretch"
+        py={{ xs: 1, sm: 2, md: 3 }}
+      >
+        <Grid
+          xs={2}
+          height="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box width="50%" height="50%" position="relative">
+            <Image
+              src={img}
+              fill
+              priority={true}
+              alt="inspiring fitness photo"
+              style={{ objectFit: "cover" }}
+            />
+          </Box>
+        </Grid>
+        <Grid
+          xs={4}
+          container
+          height="100%"
+          justifyContent="center"
+          // alignContent="center"
+          alignItems="stretch"
+        >
+          <Grid
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="stretch"
+            py={{ xs: 1, sm: 2, md: 3 }}
+          >
+            <Typography variant="h1">Guide</Typography>
+          </Grid>
+          <Grid
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="stretch"
+          >
+            <Typography variant="h5" fontWeight="light">
+              Your guide to a healthier life
+            </Typography>
+          </Grid>
+          <Grid
+            xs={12}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Button
+              variant="contained"
+              component={Link}
+              href="/api/auth/signin"
+            >
+              <Typography
+                variant="h5"
+                className="py-1 px-6 border-1 border-white border-solid"
+              >
+                Login
+              </Typography>
+            </Button>
+          </Grid>
+          <Grid xs={12} display="flex" justifyContent="center" alignItems="end">
+            <Copyright />
+          </Grid>
+        </Grid>
+
+        <Grid
+          xs={2}
+        ></Grid>
+      </Grid>
+    </Container>
   );
 }
