@@ -32,18 +32,18 @@ declare module "@mui/material/styles" {
 
 const baseTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "#005F73",
+      main: '#FFFFFF',
     },
     secondary: {
       main: alpha("#E9D8A6", 0.99),
     },
     background: {
-      default: "#001219",
+      default: "#FFFFFF",
     },
     text: {
-      primary: "#9CC4C4",
+      primary: "#000000",
     },
     error: {
       main: "#9B2226",
@@ -147,7 +147,7 @@ export const customColorsTheme = createTheme(baseTheme, {
   palette: {
     posterColor: baseTheme.palette.augmentColor({
       color: {
-        main: "#E6E49F",
+        main: "#FFFFFF",
       },
       name: "posterColor",
     }),

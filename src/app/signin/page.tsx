@@ -50,7 +50,7 @@ export default async function SignInPage() {
      * providers and is a client component. It accepts a children prop which is
      * how we pass in the provider btns as server components
      */
-    <CustomSignInPage img={img}>
+    <CustomSignInPage>
       {/* {signInWithProvidersComponents} */}
     </CustomSignInPage>
   );
