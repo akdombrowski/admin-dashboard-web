@@ -25,49 +25,71 @@ export default async function SignInPageAlternate() {
   }
 
   return (
-    <Container maxWidth={false} sx={{ height: "100vh" }}>
-      <Stack
+    <Container
+      maxWidth={false}
+      sx={{
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "stretch",
+      }}
+    >
+      <Grid
+        container
         spacing={6}
+        maxHeight="100%"
         width="100%"
-        height="100%"
         justifyContent="center"
         alignItems="center"
       >
-        <Typography variant="h1">Guide</Typography>
+        <Grid xs={12}>
+          <Typography variant="h1" textAlign="center">
+            Guide
+          </Typography>
+        </Grid>
 
-        <Stack
+        <Grid
+          xs={12}
+          container
+          height="70%"
           spacing={6}
-          direction="row"
-          height="20%"
-          width="100%"
-          justifyContent="center"
-          alignItems="center"
-          py={{ xs: 1, sm: 2, md: 3 }}
+          justifyContent="start"
+          alignItems="stretch"
         >
-          <Box width="25%" height="100%" position="relative">
-            <Image
-              src={img}
-              fill
-              priority={true}
-              alt="inspiring fitness photo"
-              style={{ objectFit: "cover" }}
-            />
-          </Box>
-          <Stack direction="column" spacing={6}>
-            <Box>
-              <Typography variant="h5" fontWeight="light">
+          <Grid xs={4}>
+            <Box width="100%" height="100%" position="relative">
+              <Image
+                src={img}
+                fill
+                priority={true}
+                alt="inspiring fitness photo"
+                style={{ objectFit: "cover", overflow: "hidden" }}
+              />
+            </Box>
+          </Grid>
+          <Grid
+            xs={7}
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid xs={12}></Grid>
+            <Grid xs={12} display="flex" justifyContent="center">
+              <Typography textAlign="center" fontWeight="light" fontSize="2rem">
                 Your guide to a healthier life
               </Typography>
-              <Box width="25%" height="100%" position="relative"></Box>
-            </Box>
-            <SignInProviders />
-          </Stack>
-        </Stack>
+            </Grid>
+            <Grid xs={10} display="flex" justifyContent="center">
+              <SignInProviders />
+            </Grid>
+          </Grid>
+        </Grid>
 
-        <Copyright />
-
-        <Grid xs={2}></Grid>
-      </Stack>
+        <Grid xs={12}>
+          <Copyright mt={0} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }

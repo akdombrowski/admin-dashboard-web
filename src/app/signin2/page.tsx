@@ -1,11 +1,12 @@
 // import CustomSignInPage from "@/auth-pages/CustomSignInPage";
 import SignInPageAlternate from "@/auth-pages/SignInPageAlternate";
-import TestOption from "@/app/signin2/TestOption";
 
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import Authentication from "@/ui/features/authentication/auth-layout";
+import TestOption from "@/app/signin2/TestOption";
 
-export default async function SignInPage() {
+export default async function SignInPage2() {
   const session = await auth();
   if (session) {
     const response = await fetch(
@@ -33,14 +34,14 @@ export default async function SignInPage() {
   }
 
   return (
-    /**
-     * CustomSignInPage provides the wrapper for the sign in buttons with the
-     * providers and is a client component. It accepts a children prop which is
-     * how we pass in the provider btns as server components
-     */
     <>
-      <TestOption option="1" alternate="/signin2"/>
-      <SignInPageAlternate />
+      <TestOption
+        option="2"
+        alternate="/signin"
+        textColor="#000"
+        textAlpha={0.65}
+      />
+      <Authentication />
     </>
   );
 }
