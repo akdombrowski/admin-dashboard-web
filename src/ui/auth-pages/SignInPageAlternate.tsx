@@ -53,7 +53,6 @@ export default async function SignInPageAlternate() {
           container
           height="100%"
           justifyContent="center"
-          // alignContent="center"
           alignItems="stretch"
         >
           <Grid
@@ -89,10 +88,6 @@ export default async function SignInPageAlternate() {
         </Grid>
 
         <Grid xs={2}></Grid>
-
-        <Grid xs={12} display="flex" justifyContent="center" alignItems="end">
-          <Copyright />
-        </Grid>
       </Grid>
     </Container>
   );
