@@ -38,17 +38,17 @@ export const {
       }
       return false;
     },
-    async jwt({ token, account }) {
-      // Check if the account object exists and has the custom data we attached in signIn
-      if (account?.coachData) {
-        // Attach the custom data to the token object
-        token.coachData = account.coachData;
+    async jwt({ token, user, account }) {
+      // Check if the signIn callback returned any data
+      if (account?.provider === "google" && user) {
+        token.coachData = user;
       }
       return token;
     },
     async session({ session, token }) {
-      // Attach the custom data from the token to the session object
-      session.coachData = token.coachData;
+      if (token.coachData) {
+        session.coachData = token.coachData;
+      }
       return session;
     },
   },
