@@ -78,7 +78,7 @@ const baseTheme = createTheme({
       lineHeight: 1.0,
     },
     h3: {
-      fontSize: "3.rem",
+      fontSize: "3rem",
       fontWeight: 300,
       lineHeight: 1.0,
     },

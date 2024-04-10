@@ -10,33 +10,50 @@ export const {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    // Nodemailer({}),
   ],
   callbacks: {
-    /**
-     * Authjs docs on signIn callback:
-     * https://authjs.dev/guides/basics/callbacks#sign-in-callback
-     */
-    signIn: async ({ account, profile }): Promise<string | boolean> => {
-      // Check if Google has verified the user's email, so that we can trust the
-      // email belongs to the current authenticated user.
-      // This is a special property that Google returns
-      // https://authjs.dev/reference/core/providers/google
+    async signIn({ account, profile }) {
       if (account.provider === "google") {
-        return profile.email_verified;
-      }
+        try {
+          const response = await fetch(
+            "https://tiz0drahvk.execute-api.us-east-2.amazonaws.com/default/registerCoach-RegisterCoachFunction-hmyke4bLdhAf",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: profile.email,
+                name: profile.name,
+              }),
+            },
+          );
 
-      console.error(
-        "signin",
-        "\n",
-        "provider:",
-        account.provider,
-        " email_verified:",
-        profile.email_verified
-      );
-      // false makes sure the email has been verified and the user has
-      // used Google to authn
+          if (!response.ok) {
+            throw new Error(`API call failed with status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          // Attach the custom data to the token for later use in the jwt and session callbacks
+          account.coachData = data;
+          return true;
+        } catch (error) {
+          console.error("Error calling API:", error);
+          return false;
+        }
+      }
       return false;
+    },
+    async jwt({ token, user, account }) {
+      // Check if the signIn callback returned any data
+      if (account?.provider === "google" && user) {
+        token.coachData = user;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token.coachData) {
+        session.coachData = token.coachData;
+      }
+      return session;
     },
   },
   pages: {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/ui/components/button";
+
 export default function Authentication() {
     return (
         <>
