@@ -32,8 +32,7 @@ export const {
           }
 
           const data = await response.json();
-          // Attach the custom data to the token for later use in the jwt and session callbacks
-          account.coachData = data;
+
           return true;
         } catch (error) {
           console.error("Error calling API:", error);

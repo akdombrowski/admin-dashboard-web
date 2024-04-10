@@ -28,12 +28,9 @@ const getAuthProviders = async (): Promise<AuthProvidersType> => {
 
 export default function CustomSignInPage({
   img,
-}: // providers,
-// children,
+}:
 {
   img: string;
-  // providers: AuthProvidersType;
-  // children?: ReactNode;
 }) {
   const theme = useTheme();
   const [providers, setProviders] = useState<AuthProvidersType>({
@@ -134,9 +131,6 @@ export default function CustomSignInPage({
           justifyContent="center"
           alignItems="center"
         >
-          {/* Slot for children prop */}
-          {/* {children} */}
-          {/* Slot for children prop */}
           {providersComponents}
         </Grid>
         <Grid xs={12} display="flex" justifyContent="center" alignItems="end">

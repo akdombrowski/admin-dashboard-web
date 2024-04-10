@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import Grid from "@mui/material/Unstable_Grid2";
-import Box from "@mui/material/Box";
 import SignInBtn from "@/components/signInBtn";
-
-import { useTheme } from "@mui/material/styles";
 
 import type { AuthProvidersType } from "@/actions/getAuthProviders";
 
@@ -20,7 +16,6 @@ const getAuthProviders = async (): Promise<AuthProvidersType> => {
 };
 
 export default function SignInProviders() {
-  const theme = useTheme();
   const [providers, setProviders] = useState<AuthProvidersType>({
     google: {
       id: "google",

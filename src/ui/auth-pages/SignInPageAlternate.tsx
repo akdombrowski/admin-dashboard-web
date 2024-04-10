@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -17,10 +16,6 @@ import getRNDImg from "@/actions/getRNDImg";
 export default async function SignInPageAlternate() {
   const session = await auth();
   const img = await getRNDImg({
-    category: "fitness",
-    refreshIntervalSeconds: 0,
-  });
-  const img2 = await getRNDImg({
     category: "fitness",
     refreshIntervalSeconds: 0,
   });

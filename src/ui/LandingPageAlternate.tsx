@@ -15,7 +15,10 @@ import getRNDImg from "@/actions/getRNDImg";
 
 export default async function HomePage() {
   const session = await auth();
-  const img = await getRNDImg();
+  const img = await getRNDImg({
+    category: "fitness",
+    refreshIntervalSeconds: 0,
+  });
 
   if (session) {
     try {
