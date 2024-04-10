@@ -9,11 +9,10 @@ import Link from "next/link";
 
 export default async function Users() {
   const session = await auth();
-
   if (!session) {
     redirect("/api/auth/signin");
   }
-
+  console.log(session)
   const users = [
     {
       name: "Maurice Stevenson",

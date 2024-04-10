@@ -1,14 +1,12 @@
 import React from 'react';
 import { signIn } from "next-auth/react";
 import { Button } from '@/components/button'
-import Typography from "@mui/material/Typography";
-
+import { Google } from '@mui/icons-material';
+// TODO: make the icons dynamic based on the providers.
 export default function SignInBtn({ provider }) {
   return (
     <Button onClick={() => signIn(provider.id)} className="signInButton">
-      <Typography variant="button" textAlign="center">
-        Sign in with {provider.name}
-      </Typography>
+      <Google className="mr-2 h-4 w-4" />Sign in with {provider.name}
     </Button>
   );
 }

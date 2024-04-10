@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 import SignInBtn from "@/components/signInBtn";
 
-import { useTheme } from "@mui/material/styles";
-
 import type { AuthProvidersType } from "@/actions/getAuthProviders";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/card";
 
@@ -25,7 +23,7 @@ export default function CustomSignInPage({
     // providers: AuthProvidersType;
     // children?: ReactNode;
   }) {
-  const theme = useTheme();
+
   const [providers, setProviders] = useState<AuthProvidersType>({
     google: {
       id: "google",
