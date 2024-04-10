@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
-import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Copyright from "@/components/copyright";
@@ -16,7 +16,14 @@ import getRNDImg from "@/actions/getRNDImg";
 
 export default async function SignInPageAlternate() {
   const session = await auth();
-  const img = await getRNDImg();
+  const img = await getRNDImg({
+    category: "fitness",
+    refreshIntervalSeconds: 0,
+  });
+  const img2 = await getRNDImg({
+    category: "fitness",
+    refreshIntervalSeconds: 0,
+  });
 
   if (session) {
     redirect("/users");
@@ -24,21 +31,25 @@ export default async function SignInPageAlternate() {
 
   return (
     <Container maxWidth={false} sx={{ height: "100vh" }}>
-      <Grid
+      <Stack
+        spacing={6}
+        width="100%"
         height="100%"
-        container
         justifyContent="center"
-        alignItems="stretch"
-        py={{ xs: 1, sm: 2, md: 3 }}
+        alignItems="center"
       >
-        <Grid
-          xs={2}
-          height="100%"
-          display="flex"
+        <Typography variant="h1">Guide</Typography>
+
+        <Stack
+          spacing={6}
+          direction="row"
+          height="20%"
+          width="100%"
           justifyContent="center"
           alignItems="center"
+          py={{ xs: 1, sm: 2, md: 3 }}
         >
-          <Box width="50%" height="50%" position="relative">
+          <Box width="25%" height="100%" position="relative">
             <Image
               src={img}
               fill
@@ -47,48 +58,21 @@ export default async function SignInPageAlternate() {
               style={{ objectFit: "cover" }}
             />
           </Box>
-        </Grid>
-        <Grid
-          xs={4}
-          container
-          height="100%"
-          justifyContent="center"
-          alignItems="stretch"
-        >
-          <Grid
-            xs={12}
-            display="flex"
-            justifyContent="center"
-            alignItems="stretch"
-            py={{ xs: 1, sm: 2, md: 3 }}
-          >
-            <Typography variant="h1">Guide</Typography>
-          </Grid>
-          <Grid
-            xs={12}
-            display="flex"
-            justifyContent="center"
-            alignItems="stretch"
-          >
-            <Typography variant="h5" fontWeight="light">
-              Your guide to a healthier life
-            </Typography>
-          </Grid>
-          <Grid
-            xs={12}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <Stack direction="column" spacing={6}>
+            <Box>
+              <Typography variant="h5" fontWeight="light">
+                Your guide to a healthier life
+              </Typography>
+              <Box width="25%" height="100%" position="relative"></Box>
+            </Box>
             <SignInProviders />
-          </Grid>
-          <Grid xs={12} display="flex" justifyContent="center" alignItems="end">
-            <Copyright />
-          </Grid>
-        </Grid>
+          </Stack>
+        </Stack>
+
+        <Copyright />
 
         <Grid xs={2}></Grid>
-      </Grid>
+      </Stack>
     </Container>
   );
 }
