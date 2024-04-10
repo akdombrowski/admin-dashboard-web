@@ -3,14 +3,14 @@ import { redirect } from "next/navigation";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Copyright from "@/components/copyright";
 
 import Image from "next/image";
+import SignInWithGoogleBtn from "@/components/signInWithGoogleBtn";
 
-import SignInProviders from "@/ui/auth-pages/signinProviders";
+// import SignInProviders from "@/ui/auth-pages/signinProviders";
 import getRNDImg from "@/actions/getRNDImg";
 
 export default async function SignInPageAlternate() {
@@ -81,7 +81,26 @@ export default async function SignInPageAlternate() {
               </Typography>
             </Grid>
             <Grid xs={10} display="flex" justifyContent="center">
-              <SignInProviders />
+              <SignInWithGoogleBtn
+                btnSx={{
+                  my: "auto",
+                  // width: "100%",
+                  maxWidth: "100%",
+                  // height: "100%",
+                  height: "100%",
+                  p: 1,
+                  borderWidth: 1,
+                  borderStyle: "solid",
+                  borderRadius: 1,
+                  borderColor: "white",
+                }}
+                iconSx={{
+                  maxWidth: "100%",
+                  // maxWidth: "100%",
+                  height: "100%",
+                  // maxHeight: "100%",
+                }}
+              />
             </Grid>
           </Grid>
         </Grid>

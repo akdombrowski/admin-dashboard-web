@@ -20,6 +20,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 // nextjs optimization
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
+import AppAppBar from "@/components/appbar/AppAppBar";
+import Toolbar from "@mui/material/Toolbar";
+
 export const metadata: Metadata = {
   title: "Guide",
   description: "Guide guides you with guidance.",
@@ -36,6 +39,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <AppAppBar />
+            <Toolbar variant="dense" sx={{ minHeight: 45 }} />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
