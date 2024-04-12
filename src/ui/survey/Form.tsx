@@ -15,17 +15,48 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 import clientSubmit from "@/actions/survey/clientSubmit";
+import { Stack } from "@mui/material";
 
 export default function SurveyForm() {
   return (
-    <Container maxWidth={false}>
-      <Grid container justifyContent="center" alignItems="stretch">
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
+    <Container
+      maxWidth={false}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Grid
+        container
+        width="100%"
+        spacing={3}
+        justifyContent="center"
+        alignItems="stretch"
+        py={3}
+        my={2}
+      >
+        <Grid
+          container
+          spacing={2}
+          component="form"
+          noValidate
+          action={clientSubmit}
+        >
+          <Stack
+            width="100%"
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Avatar sx={{ m: 1, bgcolor: "secondary.light" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
+          </Stack>
+        </Grid>
         <Grid
           container
           spacing={2}
@@ -81,6 +112,7 @@ export default function SurveyForm() {
           fullWidth
           id="clientSubmitBtn"
           variant="contained"
+          color="secondary"
           sx={{ mt: 3, mb: 2 }}
         >
           <TextField
@@ -95,6 +127,7 @@ export default function SurveyForm() {
           id="coachSaveBtn"
           fullWidth
           variant="contained"
+          color="success"
           sx={{ mt: 3, mb: 2 }}
         >
           <Typography>Save</Typography>

@@ -37,7 +37,7 @@ const baseTheme = createTheme({
       main: "#005F73",
     },
     secondary: {
-      main: alpha("#E9D8A6", 0.99),
+      main: alpha("#001AF0", 0.99),
     },
     background: {
       default: "#001219",
