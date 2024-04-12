@@ -17,20 +17,6 @@ import Container from "@mui/material/Container";
 import clientSubmit from "@/actions/survey/clientSubmit";
 
 export default function SurveyForm() {
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
-
-    const form = event.target;
-    const data = {};
-    // Iterate through the form elements
-    Array.from(form.elements).forEach(element => {
-      if (element.id && element.value) {  // Check if element has an ID and a value
-        data[element.id] = element.value;  // Collect each field's ID and value
-      }
-    });
-
-    console.log("Form Data:", data);
-  };
   return (
     <Container maxWidth={false}>
       <Grid container justifyContent="center" alignItems="stretch">
