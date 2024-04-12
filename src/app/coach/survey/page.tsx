@@ -1,8 +1,8 @@
-import Form from "@/ui/survey/Form";
+import SurveyForm from "@/ui/survey/Form";
 
 
 
 export default function CoachSurvey() {
 
-  return( <Form/>)
+  return( <SurveyForm/>)
 }
