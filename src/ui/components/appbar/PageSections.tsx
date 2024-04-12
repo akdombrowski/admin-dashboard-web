@@ -54,11 +54,11 @@ export default function PageSections() {
         justifyContent="start"
         alignItems="stretch"
         component={Link}
-        href="/users"
+        href="/coach/survey"
       >
         <MenuItem id="blogs-menuItem">
           <Typography variant="body1" color="text.primary">
-            Users
+            Survey
           </Typography>
         </MenuItem>
       </Grid>

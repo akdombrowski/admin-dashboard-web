@@ -21,9 +21,17 @@ Run the app locally using:
 npm run dev
 ```
 
-For auth to work, you need to set up environment variables. Take a look at the `.env.example` file.
+For auth to work, you need to set up environment variables. Take a look at the
+`.env.example` file.
 
 Duplicate the file and _rename_ it `.env.development.local`.
 
-[!IMPORTANT]
-*It should _NOT_ be committed or pushed to git!!!
+> [!IMPORTANT]
+> > \*It should _NOT_ be committed or pushed to git!!!
+
+
+### tsconfig
+
+[extends nextjs recommended tsconfig](https://github.com/tsconfig/bases?tab=readme-ov-file#nextjs-tsconfigjson)
+
+[npm - @tsconfig/next](https://www.npmjs.com/package/@tsconfig/next)

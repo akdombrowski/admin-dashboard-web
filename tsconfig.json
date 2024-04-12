@@ -1,49 +1,31 @@
 {
+  "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    // "allowJs": true,
+    // "skipLibCheck": true,
+    // "strict": false,
+    // "noEmit": true,
+    // "incremental": true,
+    // "esModuleInterop": true,
+    // "module": "esnext",
+    // "moduleResolution": "node",
+    // "resolveJsonModule": true,
+    // "isolatedModules": true,
+    // "jsx": "preserve",
+    // "plugins": [
+    //   {
+    //     "name": "next"
+    //   }
+    // ],
+    "downlevelIteration": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/components/*": [
-        "./src/ui/components/*"
-      ],
-      "@/features/*": [
-        "./src/ui/features/*"
-      ],
-      "@/auth-pages/*": [
-        "./src/ui/auth-pages/*"
-      ],
-      "@/lib/*": [
-        "./src/lib/*"
-      ],
-      "@/styles/*": [
-        "./styles/*"
-      ],
-      "@/actions/*": [
-        "./src/actions/*"
-      ]
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/ui/components/*"],
+      "@/features/*": ["./src/ui/features/*"],
+      "@/auth-pages/*": ["./src/ui/auth-pages/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/styles/*": ["./styles/*"],
+      "@/actions/*": ["./src/actions/*"]
     },
     "baseUrl": "."
   },
@@ -57,7 +39,5 @@
     "postcss.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -15,19 +15,12 @@ export default function AppBarLogo() {
       position="relative"
       sx={{ aspectRatio: 16 / 9 }}
     >
-      {/* <Box
-        sx={{ aspectRatio: 16 / 9 }}
-        flexBasis="max-content"
-        position="relative"
-      > */}
-      {/* Logo Image */}
       <Image
         src={"/healthy-lifestyle-icon.png"}
         alt="guide's logo"
         style={{ overflow: "hidden", objectFit: "contain" }}
         fill
       />
-      {/* </Box> */}
     </Box>
   );
 }
