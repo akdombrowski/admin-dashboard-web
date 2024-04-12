@@ -19,13 +19,13 @@ export default async function LandingPage() {
       );
 
       const data = await response.json();
-      const redirectPath =
-        data.message === "Coach added successfully" ||
-        (data.coach && data.coach.questions_finished === false)
-          ? "/questions"
-          : "/users";
+      const redirectPath = "/home";
       redirect(redirectPath);
     } catch (error) {
+      /**
+       * TODO: Need to have a fallback whether it's to try the api call again or
+       *       send the user to an error page or back to start ...
+       */
       console.error("Error fetching user data:", error);
     }
   }
