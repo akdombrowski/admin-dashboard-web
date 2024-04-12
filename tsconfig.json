@@ -1,22 +1,22 @@
 {
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
-    // "allowJs": true,
-    // "skipLibCheck": true,
-    // "strict": false,
-    // "noEmit": true,
-    // "incremental": true,
-    // "esModuleInterop": true,
-    // "module": "esnext",
-    // "moduleResolution": "node",
-    // "resolveJsonModule": true,
-    // "isolatedModules": true,
-    // "jsx": "preserve",
-    // "plugins": [
-    //   {
-    //     "name": "next"
-    //   }
-    // ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "downlevelIteration": true,
     "paths": {
       "@/*": ["./src/*"],
