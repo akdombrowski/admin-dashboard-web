@@ -17,7 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { alpha, useTheme } from "@mui/material/styles";
-import SignInWithGoogleBtn from "@/components/signInWithGoogleBtn";
+import SignOutBtn from "@/components/signOutBtn";
 import PageSections from "@/components/appbar/PageSections";
 import AppBarLogo from "@/components/appbar/AppBarLogo";
 import compact from "lodash-es/compact";
@@ -187,7 +187,7 @@ export default function AppAppBar() {
             justifyContent="right"
             alignItems="stretch"
           >
-            <SignInWithGoogleBtn
+            <SignOutBtn
               btnSx={{
                 my: "auto",
                 // width: "100%",
@@ -195,17 +195,19 @@ export default function AppAppBar() {
                 // height: "100%",
                 height: "100%",
                 px: 1,
-                borderWidth: 1,
-                borderStyle: "solid",
+                borderWidth: 3,
+                borderStyle: "ridge",
                 borderRadius: 1,
-                borderColor: "white",
+                backgroundColor: alpha("#000", 0.2),
+                borderColor: alpha("#fff", 0.2),
               }}
               iconSx={{
                 maxWidth: "100%",
                 // maxWidth: "100%",
-                height: "100%",
+                height: "50vw%",
                 // maxHeight: "100%",
               }}
+              txtSx={{textAlign: "center", fontSize: ".8rem"}}
             />
           </Grid>
         </Grid>

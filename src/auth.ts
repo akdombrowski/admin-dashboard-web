@@ -35,6 +35,7 @@ export const {
         //   console.error("Error calling API:", error);
         //   return false;
         // }
+        return true;
       }
 
       // if want to add other providers, will need to update here

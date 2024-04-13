@@ -13,6 +13,11 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 
 export default function HomePage() {
+  const titleFontSize = "2rem";
+  const subtitleFontSize = ".9rem";
+  const contentFontSize = "1rem";
+  const btnFontSize = "1rem";
+
   return (
     <Container
       maxWidth={false}
@@ -27,7 +32,7 @@ export default function HomePage() {
         container
         columnSpacing={6}
         justifyContent="start"
-        alignItems="center"
+        alignItems="flex-start"
       >
         <Grid xs={12}>
           <Typography component="h1" variant="h3" fontWeight={100}>
@@ -39,21 +44,22 @@ export default function HomePage() {
             <CardActionArea component={Link} href="/coach/survey">
               <CardHeader
                 title="Client Form"
-                titleTypographyProps={{ fontSize: "3rem", fontWeight: 700 }}
+                titleTypographyProps={{
+                  fontSize: titleFontSize,
+                  fontWeight: 700,
+                }}
                 subheader="Gather any info you need from your clients at any stage!"
                 subheaderTypographyProps={{
                   pt: 1,
-                  fontSize: "1.05rem",
-                  lineHeight: "1.2rem",
+                  fontSize: subtitleFontSize,
                   fontWeight: 100,
                 }}
               />
               <CardContent>
                 <Typography
                   variant="body1"
-                  fontSize="1.15rem"
+                  fontSize={contentFontSize}
                   fontWeight={300}
-                  lineHeight="1.25rem"
                 >
                   Viwe, Edit, and Configure the live status of your
                   client-facing questionnaire.
@@ -70,7 +76,7 @@ export default function HomePage() {
                 <Typography
                   variant="body1"
                   color="white"
-                  fontSize="1rem"
+                  fontSize={btnFontSize}
                   fontWeight={400}
                   textAlign="center"
                 >
@@ -82,24 +88,25 @@ export default function HomePage() {
         </Grid>
         <Grid xs={4} sm={6}>
           <Card>
-            <CardActionArea component={Link} href="/coach/survey">
+            <CardActionArea component={Link} href="/users">
               <CardHeader
                 title="Client Data"
-                titleTypographyProps={{ fontSize: "3rem", fontWeight: 700 }}
+                titleTypographyProps={{
+                  fontSize: titleFontSize,
+                  fontWeight: 700,
+                }}
                 subheader="View client responses to help you decide how best to help each client!"
                 subheaderTypographyProps={{
                   pt: 1,
-                  fontSize: "1.05rem",
-                  lineHeight: "1.2rem",
+                  fontSize: subtitleFontSize,
                   fontWeight: 100,
                 }}
               />
               <CardContent>
                 <Typography
                   variant="body1"
-                  fontSize="1.15rem"
+                  fontSize={contentFontSize}
                   fontWeight={300}
-                  lineHeight="1.25rem"
                 >
                   Take a look at your client responses and related information.
                 </Typography>
@@ -110,7 +117,7 @@ export default function HomePage() {
                 <Typography
                   variant="body1"
                   color="white"
-                  fontSize="1rem"
+                  fontSize={btnFontSize}
                   fontWeight={400}
                   textAlign="center"
                 >
@@ -122,21 +129,46 @@ export default function HomePage() {
         </Grid>
         <Grid xs={4} sm={6}>
           <Card>
-            <CardActionArea component={Link} href="/users">
+            <CardActionArea component={Link} href="/coach/survey">
+              <CardHeader
+                title="Nav Card"
+                titleTypographyProps={{
+                  fontSize: titleFontSize,
+                  fontWeight: 700,
+                }}
+                subheader="if another page was added"
+                subheaderTypographyProps={{
+                  pt: 1,
+                  fontSize: subtitleFontSize,
+                  fontWeight: 100,
+                }}
+              />
               <CardContent>
-                <Typography variant="body1">
-                  View your client submitted responses and data
+                <Typography
+                  variant="body1"
+                  fontSize={contentFontSize}
+                  fontWeight={300}
+                >
+                  another nav card
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button variant="text" component={Link} href="/users">
-                <Typography variant="body1">View client data...</Typography>
+              <Button fullWidth variant="text" component={Link} href="/users">
+                <Typography
+                  variant="body1"
+                  color="white"
+                  fontSize={btnFontSize}
+                  fontWeight={400}
+                  textAlign="center"
+                >
+                  go to a page yet to exist...
+                </Typography>
               </Button>
             </CardActions>
           </Card>
         </Grid>
-        <Grid xs={12}>
+        <Grid xs={12} display="flex" justifyContent="center">
           <Button variant="contained">
             <Typography variant="subtitle1">
               Copy Your Shareable Link

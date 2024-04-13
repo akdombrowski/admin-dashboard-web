@@ -8,28 +8,29 @@ import { redirect } from "next/navigation";
 export default async function SignInPage() {
   const session = await auth();
   if (session) {
-    const response = await fetch(
-      "https://tiz0drahvk.execute-api.us-east-2.amazonaws.com/default/registerCoach-RegisterCoachFunction-hmyke4bLdhAf",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: session.user.email,
-          name: session.user.name,
-        }),
-      },
-    );
+    // const response = await fetch(
+    //   "https://tiz0drahvk.execute-api.us-east-2.amazonaws.com/default/registerCoach-RegisterCoachFunction-hmyke4bLdhAf",
+    //   {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       email: session.user.email,
+    //       name: session.user.name,
+    //     }),
+    //   },
+    // );
 
-    if (response.ok) {
-      const data = await response.json();
-      const shouldRedirectToQuestions =
-        data.message === "Coach added successfully" ||
-        (data.coach && !data.coach.questions_finished);
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   const shouldRedirectToQuestions =
+    //     data.message === "Coach added successfully" ||
+    //     (data.coach && !data.coach.questions_finished);
 
-      redirect("/users");
-    } else {
-      console.error(`API call failed with status: ${response.status}`);
-    }
+    //   redirect("/users");
+    // } else {
+    //   console.error(`API call failed with status: ${response.status}`);
+    // }
+    redirect("/coach/survey");
   }
 
   return (
@@ -39,7 +40,7 @@ export default async function SignInPage() {
      * how we pass in the provider btns as server components
      */
     <>
-      <TestOption option="1" alternate="/signin2"/>
+      {/* <TestOption option="1" alternate="/signin2" /> */}
       <SignInPageAlternate />
     </>
   );
