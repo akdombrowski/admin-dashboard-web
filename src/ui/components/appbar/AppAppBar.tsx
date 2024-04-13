@@ -49,7 +49,7 @@ export default function AppAppBar() {
         variant="dense"
         sx={{
           minHeight: 35,
-          maxHeight: 50,
+          maxHeight: "3rem",
           justifyContent: "center",
           alignItems: "stretch",
           width: "100%",

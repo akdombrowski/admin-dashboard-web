@@ -165,6 +165,6 @@ export const customTypographyTheme = createTheme(customColorsTheme, {
   },
 });
 
-export const theme = responsiveFontSizes(customTypographyTheme, {});
+export const theme = responsiveFontSizes(customTypographyTheme);
 
 export default theme;
