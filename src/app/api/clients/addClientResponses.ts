@@ -1,51 +1,58 @@
+import dynamoClient from '@/lib/aws-config';
+import { PutCommand, UpdateCommand, UpdateCommandInput } from "@aws-sdk/lib-dynamodb";
+
 /**
- * API Stub to Add Client Responses to Questions
+ * Registers a new user with initial responses and links them to a coach in DynamoDB.
  * 
- * @param {string} clientId - The email or phone number of the client submitting the response.
- * @param {array} clientResponses - An array of objects, each containing a questionId and the client's answer.
- * @returns {Promise} - A promise that resolves to an object containing:
- *                      - status: boolean indicating if the operation was successful
- *                      - message: a string message, either success or error message
+ * @param {string} userId - The unique ID for the user.
+ * @param {string} name - The name of the user.
+ * @param {string} coachId - The ID of the coach to link the user to.
+ * @param {Array<any>} responses - An array of response objects.
+ * @returns {Promise} - A promise that resolves to an object indicating the success or failure of each operation.
  */
+export default async function registerUserAndLinkToCoach(userId: string, name: string, coachId: string, responses: Array<any>) {
+    const userParams = {
+        TableName: "Users",
+        Item: {
+            user_id: userId,
+            name: name,
+            responses: responses,
+            coach: coachId
+        }
+    };
 
-export default async function addClientResponses(clientId, clientResponses) {
-    return fetch('https://api.example.com/add-client-responses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+    try {
+        await dynamoClient.send(new PutCommand(userParams));
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        return {
+            status: false,
+            message: `Failed to create user. Error: ${error}`
+        };
+    }
+
+    const updateCoachParams: UpdateCommandInput = {
+        TableName: "Coach",
+        Key: { 'coach_id': coachId },
+        UpdateExpression: "SET users = list_append(if_not_exists(users, :empty_list), :newUser)",
+        ExpressionAttributeValues: {
+            ":newUser": [userId],
+            ":empty_list": []
         },
-        body: JSON.stringify({ clientId: clientId, responses: clientResponses })
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Assuming the API returns data in the format of { success: true }
-            console.log('API Call Successful:', data);
-            return {
-                status: data.success, // true or false
-                message: data.success ? 'Client responses added successfully.' : 'Failed to add client responses.',
-            };
-        })
-        .catch(error => {
-            console.error('API Call Failed:', error);
-            return {
-                status: false,
-                message: 'An error occurred while adding client responses.',
-            };
-        });
+        ReturnValues: "UPDATED_NEW"
+    };
+
+    try {
+        await dynamoClient.send(new UpdateCommand(updateCoachParams));
+        return {
+            status: true,
+            message: 'User created and added to coach successfully.'
+        };
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        return {
+            status: false,
+            message: `Failed to add user to coach. Error: ${error}`
+        };
+    }
 }
-
-// *-- Example usage: --*
-addClientResponses('client@example.com',
-    [
-        {
-            "questionId": 'q1',
-            "answer": 'Answer1'
-        },
-        {
-            "questionId": 'q2',
-            "answer": 'Answer2'
-        },
-    ]
-).then(result => {
-    console.log(result); // Logs the result of the API call
-});

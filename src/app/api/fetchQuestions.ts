@@ -1,43 +1,52 @@
+import dynamoClient from '@/lib/aws-config';
+import { GetCommand } from "@aws-sdk/lib-dynamodb";
+
 /**
- * API Stub to Fetch Questions Assigned to a Coach
- * 
- * @param {string} coachEmail - The email of the coach to retrieve questions for.
+ * Fetches a coach's questions from DynamoDB based on the primary key, coach_id, and checks the publish status.
+ *
+ * @param {string} id - The primary key for the User entry in DynamoDB.
  * @returns {Promise} - A promise that resolves to an object containing:
  *                      - status: boolean indicating if the operation was successful
- *                      - message: a string message, either success or error message
- *                      - questions: an array of objects with questionId, questionText, and answerType.
+ *                      - message: a string message, either indicating success or explaining the error
+ *                      - questions: an array of questions submitted by the coach
  */
+export default async function getCoachQuestions(id) {
+    const params = {
+        TableName: "Coach",
+        Key: {
+            "coach_id": id
+        }
+    };
 
-export default async function fetchCoachQuestions(coachEmail) {
-    return fetch('https://api.example.com/fetch-questions', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // TODO:  This would either be in the header/query of the request, since it's a GET request, remove if necessary.
-        body: JSON.stringify({ email: coachEmail })
-
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Assuming the API returns data in the format of { success: true, questions: [] }
-            console.log('API Call Successful:', data);
+    try {
+        const { Item } = await dynamoClient.send(new GetCommand(params));
+        if (Item && Item.questions) {
             return {
-                status: data.success, // true or false
-                message: data.success ? 'Coach questions retrieved successfully.' : 'Failed to retrieve coach questions.',
-                questions: data.questions // Array of questions
+                status: true,
+                message: 'Coach questions retrieved successfully.',
+                questions: Item.questions
             };
-        })
-        .catch(error => {
-            console.error('API Call Failed:', error);
+        } else {
             return {
                 status: false,
-                message: 'An error occurred while fetching coach questions.',
+                message: 'No questions found for the coach.',
+                questions: []
             };
-        });
+        }
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        return {
+            status: false,
+            message: 'An error occurred while fetching coach questions.',
+            answers: []
+        };
+    }
 }
 
-// *-- Example usage: --*
-fetchCoachQuestions('coach@example.com').then(result => {
-    console.log(result); // Logs the result of the API call
+
+// Example usage of the function
+getCoachQuestions('example-coach-id').then(result => {
+    console.log(result);
+}).catch(error => {
+    console.error("Error:", error);
 });

@@ -7,11 +7,16 @@ import { DataTable } from "@/features/users/components/data-table";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 
+import getCoachPublishedStatusById from "../api/coaches/getPublishStatus";
+
 export default async function Users() {
   const session = await auth();
   if (!session) {
     redirect("/api/auth/signin");
   }
+  getCoachPublishedStatusById('tommypham').then(result => {
+    console.log('result', result);
+  });
   console.log(session)
   const users = [
     {

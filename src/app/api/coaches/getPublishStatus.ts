@@ -1,42 +1,52 @@
+import dynamoClient from '@/lib/aws-config';
+import { GetCommand } from "@aws-sdk/lib-dynamodb";
+
 /**
- * API Stub to Check Coach Questions Status
- * 
- * @param {string} coachEmail - The email of the coach to check, this is the primary key.
+ * Fetches a coach's details from DynamoDB based on the primary key, coach_id, and checks the publish status.
+ *
+ * @param {string} coachId - The primary key for the coach entry in DynamoDB.
  * @returns {Promise} - A promise that resolves to an object containing:
  *                      - status: boolean indicating if the operation was successful
- *                      - message: a string message, either success or error message
- *                      - questionStatus: boolean indicating the coach's question status (true/false)
+ *                      - message: a string message, either indicating success or explaining the error
+ *                      - isPublished: boolean indicating whether the coach's status is published (true/false)
  */
+export default async function getCoachPublishedStatusById(coachId) {
+    const params = {
+        TableName: "Coach",
+        Key: {
+            "coach_id": coachId
+        }
+    };
 
-export default async function getCoachQuestionStatus(coachEmail) {
-    return fetch('https://api.example.com/check-question-status', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        // TODO:  This would either be in the header/query of the request, since it's a GET request, remove if necessary.
-        body: JSON.stringify({ email: coachEmail })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('API Call Successful:', data);
+    try {
+        const { Item } = await dynamoClient.send(new GetCommand(params));
+        if (Item) {
+            const isPublished = Item.publish === false ? false : true;
             return {
-                status: data.success, // true or false
-                message: data.success ? 'Coach status retrieved successfully.' : 'Failed to retrieve coach status.',
-                coachStatus: data.questionStatus // true or false
+                status: true,
+                message: 'Coach found.',
+                isPublished: isPublished
             };
-        })
-        .catch(error => {
-            console.error('API Call Failed:', error);
+        } else {
             return {
                 status: false,
-                message: 'An error occurred while fetching coach status.',
-                coachStatus: false
+                message: 'Coach not found.',
+                isPublished: false
             };
-        });
+        }
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        return {
+            status: false,
+            message: `${error} Failed to retrieve coach details.`,
+            isPublished: false
+        };
+    }
 }
 
-// *-- Example usage: --*
-getCoachQuestionStatus('coach@example.com').then(result => {
-    console.log(result); // Logs the result of the API call
+// Example usage of the function
+getCoachPublishedStatusById('example-coach-id').then(result => {
+    console.log(result.isPublished);
+}).catch(error => {
+    console.error("Error:", error);
 });
