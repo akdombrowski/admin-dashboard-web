@@ -18,27 +18,31 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import clientSubmit from "@/actions/survey/clientSubmit";
 import Question from "@/ui/survey/Question";
 
-export interface EditableSurveyQuestion {
-  [key: number]: string;
-}
+import EditFormBtns from "@/ui/survey/EditFormBtns";
 
-const templateQuestions: EditableSurveyQuestion = {
-  1: "Template Question #1",
-  2: "Template Question #2",
-  3: "Template Question #3",
-};
+const templateQuestions = [
+  "Template Question #1",
+  "Template Question #2",
+  "Template Question #3",
+];
 
 export default function EditSurveyForm() {
-  // num of questions minus first name and last name fields
-  let numQuestions = 3;
-  const questions = templateQuestions;
+  const [questions, setQuestions] = useState<string[]>(templateQuestions);
 
   const addQuestion = () => {
-    numQuestions++;
-    const question = `Question ${numQuestions}`;
-    questions[numQuestions] = question
-    return <Question questionNum={numQuestions} question={question} />;
+    const newQNum = questions.length + 1;
+
+    const question = `Question ${newQNum}`;
+    const quests = [...questions, question];
+    setQuestions(quests);
+    return <Question questionNum={newQNum} question={question} />;
   };
+
+  const handleAdd = () => {}
+
+  const questionComponents = questions.map((q, i, qs) => {
+    return <Question key={`question-${i}`} questionNum={i} question={q} />;
+  });
 
   const deleteQuestion = () => {};
 
@@ -97,32 +101,14 @@ export default function EditSurveyForm() {
               autoComplete="family-name"
             />
           </Grid>
-          <Grid xs={12}>
-            <TextField
-              hiddenLabel
-              fullWidth
-              autoFocus
-              id="question1"
-              name="question1"
-              size="small"
-              defaultValue="Template Question #1"
-            />
-          </Grid>
-          <Grid xs={12}>
-            <TextField
-              hiddenLabel
-              fullWidth
-              id="question2"
-              name="question2"
-              size="small"
-              defaultValue="Template Question #2"
-            />
-          </Grid>
+
+          {questionComponents}
         </Grid>
 
         <Grid xs={12}>
           <Button
             fullWidth
+            disabled
             id="clientSubmitBtn"
             variant="contained"
             color="success"
@@ -131,6 +117,11 @@ export default function EditSurveyForm() {
           </Button>
         </Grid>
       </Grid>
+      <EditFormBtns
+        handleAdd={handleAdd}
+        handleSave={() => console.log("hallelujah! i've been saved!")}
+        handlePublish={() => console.log("i'm now a published author")}
+      />
     </Container>
   );
 }
