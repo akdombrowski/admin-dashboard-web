@@ -31,7 +31,9 @@ export default function HomePage() {
               <Typography variant="body1">Edit Questions Form</Typography>
             </CardContent>
             <CardActions>
-              <Link href="/survey" />
+              <Button variant="text" component={Link} href="/survey">
+                <Typography variant="body1">Go to edit questions...</Typography>
+              </Button>
             </CardActions>
           </Card>
         </Grid>
@@ -41,7 +43,9 @@ export default function HomePage() {
               <Typography variant="body1">Client Data</Typography>
             </CardContent>
             <CardActions>
-              <Link href="/users" />
+              <Button variant="text" component={Link} href="/users">
+                <Typography variant="body1">Go to client data...</Typography>
+              </Button>
             </CardActions>
           </Card>
         </Grid>
