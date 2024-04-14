@@ -40,7 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <AppAppBar />
-            <Toolbar variant="dense" sx={{ minHeight: 45 }} />
+            <Toolbar variant="dense" sx={{ minHeight: "5rem" }} />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>
