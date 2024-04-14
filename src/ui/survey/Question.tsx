@@ -6,7 +6,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 import type { GridSize } from "@mui/material";
 
-
 export default function Question({
   questionNum,
   question,

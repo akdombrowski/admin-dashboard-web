@@ -10,7 +10,6 @@ export default function CoachSurvey() {
       <Grid xs={12} pb={6}>
         <EditSurveyForm />
       </Grid>
-
     </Grid>
   );
 }
