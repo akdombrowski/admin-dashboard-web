@@ -1,10 +1,11 @@
 import { auth } from "@/auth";
+import type { Session } from "next-auth";
 import { redirect } from "next/navigation";
 
 export default async function LandingPage() {
   const session = await auth();
 
-  if (session) {
+  const registerCoach = async (session: Session) => {
     try {
       const response = await fetch(
         "https://tiz0drahvk.execute-api.us-east-2.amazonaws.com/default/registerCoach-RegisterCoachFunction-hmyke4bLdhAf",
@@ -28,6 +29,13 @@ export default async function LandingPage() {
        */
       console.error("Error fetching user data:", error);
     }
+  };
+
+  if (session) {
+    // TODO: where does this need to go
+    // registerCoach(session)
+
+    redirect("/home");
   }
 
   redirect("/signin");

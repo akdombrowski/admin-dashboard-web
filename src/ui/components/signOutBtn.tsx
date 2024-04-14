@@ -1,24 +1,25 @@
 "use client";
 
-import Google from "@mui/icons-material/Google";
 import IconButton from "@mui/material/IconButton";
-import { signIn } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { type SxProps, type Theme } from "@mui/material";
 
-export default function SignInWithGoogleBtn({
+export default function SignOutBtn({
   iconSx,
   btnSx,
+  txtSx,
 }: {
   iconSx?: SxProps<Theme> | undefined;
   btnSx?: SxProps<Theme> | undefined;
+  txtSx?: SxProps<Theme> | undefined;
 }) {
   return (
     <IconButton
-      onClick={() => signIn("google")}
-      aria-label="Click to sign in with your Google account"
+      onClick={() => signOut()}
+      aria-label="Click to sign out"
       sx={{ ...btnSx }}
     >
       <Stack
@@ -27,9 +28,9 @@ export default function SignInWithGoogleBtn({
         justifyContent="center"
         alignItems="center"
       >
-        <Google sx={{ ...iconSx }} />
-        <Typography variant="button" textAlign="center">
-          Sign in with Google
+        <ExitToAppIcon sx={{ ...iconSx }} />
+        <Typography variant="button" sx={{ ...txtSx }}>
+          Sign Out
         </Typography>
       </Stack>
     </IconButton>
