@@ -3,11 +3,17 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
 
-export default function EditFormBtns(
-  handleAdd: () => void,
-  handleSave: () => void,
-  handlePublish: () => void,
-) {
+interface EditFormBtnsProps {
+  handleAdd: () => void;
+  handleSave: () => void;
+  handlePublish: () => void;
+}
+
+export default function EditFormBtns({
+  handleAdd,
+  handleSave,
+  handlePublish,
+}: EditFormBtnsProps) {
   return (
     <Grid container>
       <Grid xs={3}>
@@ -35,10 +41,10 @@ export default function EditFormBtns(
       <Grid xs={3}>
         <Button
           fullWidth
-          id="clientSubmitBtn"
+          id="coachPublishButton"
           variant="contained"
           color="success"
-          onClick={handleSave}
+          onClick={handlePublish}
         >
           Publish
         </Button>

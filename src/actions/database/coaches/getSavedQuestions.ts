@@ -1,35 +1,37 @@
+"use server"
+
 import dynamoClient from '@/lib/aws-config';
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 
 /**
- * Fetches a coach's questions from DynamoDB based on the primary key, coach_id, and checks the publish status.
+ * Fetches a coach's saved questions from DynamoDB based on the primary key, coach_id.
  *
- * @param {string} id - The primary key for the User entry in DynamoDB.
+ * @param {string} coachId - The primary key for the coach entry in DynamoDB.
  * @returns {Promise} - A promise that resolves to an object containing:
  *                      - status: boolean indicating if the operation was successful
  *                      - message: a string message, either indicating success or explaining the error
- *                      - questions: an array of questions submitted by the coach
+ *                      - questions: an array of saved questions submitted by the coach
  */
-export default async function getCoachQuestions(id) {
+export default async function getSavedQuestions(coachId) {
     const params = {
         TableName: "Coach",
         Key: {
-            "coach_id": id
+            "coach_id": coachId
         }
     };
 
     try {
         const { Item } = await dynamoClient.send(new GetCommand(params));
-        if (Item && Item.questions) {
+        if (Item && Item.saved_questions) {
             return {
                 status: true,
-                message: 'Coach questions retrieved successfully.',
-                questions: Item.questions
+                message: 'Saved questions retrieved successfully.',
+                questions: Item.saved_questions
             };
         } else {
             return {
                 status: false,
-                message: 'No questions found for the coach.',
+                message: 'No saved questions found for the coach.',
                 questions: []
             };
         }
@@ -37,16 +39,8 @@ export default async function getCoachQuestions(id) {
         console.error('DynamoDB Error:', error);
         return {
             status: false,
-            message: 'An error occurred while fetching coach questions.',
-            answers: []
+            message: `${error} An error occurred while fetching saved coach questions.`,
+            questions: []
         };
     }
 }
-
-
-// Example usage of the function
-getCoachQuestions('example-coach-id').then(result => {
-    console.log(result);
-}).catch(error => {
-    console.error("Error:", error);
-});

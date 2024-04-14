@@ -19,7 +19,7 @@ const templateQuestions: EditableSurveyQuestion = {
   3: "Template Question #3",
 };
 
-export default function ViewSuveyResponses() {
+export default function ViewSurveyResponses() {
   // num of questions minus first name and last name fields
   let numQuestions = 3;
   const questions = templateQuestions;
@@ -43,7 +43,7 @@ export default function ViewSuveyResponses() {
     );
   };
 
-  const deleteQuestion = () => {};
+  const deleteQuestion = () => { };
 
   return (
     <Container id="editSurveyFormContainer" maxWidth="md">

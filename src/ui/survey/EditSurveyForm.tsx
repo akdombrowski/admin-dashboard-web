@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 import clientSubmit from "@/actions/survey/clientSubmit";
@@ -38,13 +39,13 @@ export default function EditSurveyForm() {
     return <Question questionNum={newQNum} question={question} />;
   };
 
-  const handleAdd = () => {}
+  const handleAdd = () => { }
 
   const questionComponents = questions.map((q, i, qs) => {
     return <Question key={`question-${i}`} questionNum={i} question={q} />;
   });
 
-  const deleteQuestion = () => {};
+  const deleteQuestion = () => { };
 
   return (
     <Container id="editSurveyFormContainer" maxWidth="md">
@@ -120,8 +121,8 @@ export default function EditSurveyForm() {
       </Grid>
       <EditFormBtns
         handleAdd={handleAdd}
-        handleSave={() => console.log("hallelujah! i've been saved!")}
-        handlePublish={() => console.log("i'm now a published author")}
+        handleSave={() => { console.log("handle save here") }}
+        handlePublish={() => { console.log("handle publish here") }}
       />
     </Container>
   );

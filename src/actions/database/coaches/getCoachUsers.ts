@@ -1,16 +1,18 @@
+"use server"
+
 import dynamoClient from '@/lib/aws-config';
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 
 /**
- * Fetches a coach's details from DynamoDB based on the primary key, coach_id, and checks the publish status.
+ * Fetches a coach's associated users from DynamoDB based on the primary key, coach_id.
  *
  * @param {string} coachId - The primary key for the coach entry in DynamoDB.
  * @returns {Promise} - A promise that resolves to an object containing:
  *                      - status: boolean indicating if the operation was successful
  *                      - message: a string message, either indicating success or explaining the error
- *                      - isPublished: boolean indicating whether the coach's status is published (true/false)
+ *                      - users: an array of user identifiers associated with the coach
  */
-export default async function getCoachPublishedStatusById(coachId) {
+export default async function getCoachUsers(coachId) {
     const params = {
         TableName: "Coach",
         Key: {
@@ -20,33 +22,31 @@ export default async function getCoachPublishedStatusById(coachId) {
 
     try {
         const { Item } = await dynamoClient.send(new GetCommand(params));
-        if (Item) {
-            const isPublished = Item.publish === false ? false : true;
+        if (Item && Item.users) {
             return {
                 status: true,
-                message: 'Coach found.',
-                isPublished: isPublished
+                message: 'Coach users retrieved successfully.',
+                users: Item.users
+            };
+        } else if (Item && !Item.users) {
+            return {
+                status: false,
+                message: 'No users associated with the coach.',
+                users: []
             };
         } else {
             return {
                 status: false,
                 message: 'Coach not found.',
-                isPublished: false
+                users: []
             };
         }
     } catch (error) {
         console.error('DynamoDB Error:', error);
         return {
             status: false,
-            message: `${error} Failed to retrieve coach details.`,
-            isPublished: false
+            message: 'An error occurred while fetching coach users.',
+            users: []
         };
     }
 }
-
-// Example usage of the function
-getCoachPublishedStatusById('example-coach-id').then(result => {
-    console.log(result.isPublished);
-}).catch(error => {
-    console.error("Error:", error);
-});

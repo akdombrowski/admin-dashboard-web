@@ -1,3 +1,5 @@
+"use server"
+
 import dynamoClient from '@/lib/aws-config';
 import { PutCommand, UpdateCommand, UpdateCommandInput } from "@aws-sdk/lib-dynamodb";
 
@@ -10,7 +12,7 @@ import { PutCommand, UpdateCommand, UpdateCommandInput } from "@aws-sdk/lib-dyna
  * @param {Array<any>} responses - An array of response objects.
  * @returns {Promise} - A promise that resolves to an object indicating the success or failure of each operation.
  */
-export default async function registerUserAndLinkToCoach(userId: string, name: string, coachId: string, responses: Array<any>) {
+export default async function addClientResponses(userId: string, name: string, coachId: string, responses: Array<any>) {
     const userParams = {
         TableName: "Users",
         Item: {

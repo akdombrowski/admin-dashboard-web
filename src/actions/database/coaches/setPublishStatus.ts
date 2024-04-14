@@ -1,3 +1,5 @@
+"use server"
+
 import dynamoClient from '@/lib/aws-config';
 import { UpdateCommand, UpdateCommandInput } from "@aws-sdk/lib-dynamodb";
 
@@ -10,7 +12,7 @@ import { UpdateCommand, UpdateCommandInput } from "@aws-sdk/lib-dynamodb";
  *                      - status: boolean indicating if the operation was successful
  *                      - message: a string message indicating success or error
  */
-export default async function setCoachPublishedStatusById(coachId, publishStatus) {
+export default async function setPublishStatus(coachId, publishStatus) {
     const params: UpdateCommandInput = {
         TableName: "Coach",
         Key: {
@@ -38,10 +40,3 @@ export default async function setCoachPublishedStatusById(coachId, publishStatus
         };
     }
 }
-
-// Example usage of the function
-setCoachPublishedStatusById('example-coach-id', true).then(result => {
-    console.log(result.message);
-}).catch(error => {
-    console.error("Error:", error);
-});

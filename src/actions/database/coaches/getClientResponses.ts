@@ -1,3 +1,5 @@
+"use server"
+
 import dynamoClient from '@/lib/aws-config';
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 
