@@ -16,6 +16,7 @@ import Container from "@mui/material/Container";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 import clientSubmit from "@/actions/survey/clientSubmit";
+import Question from "@/ui/survey/Question";
 
 export interface EditableSurveyQuestion {
   [key: number]: string;
@@ -35,20 +36,8 @@ export default function EditSurveyForm() {
   const addQuestion = () => {
     numQuestions++;
     const question = `Question ${numQuestions}`;
-    questions[numQuestions] = question;
-    return (
-      <Grid xs={12}>
-        <TextField
-          hiddenLabel
-          fullWidth
-          autoFocus
-          id={`question${numQuestions}`}
-          name={`question${numQuestions}`}
-          size="small"
-          defaultValue={question}
-        />
-      </Grid>
-    );
+    questions[numQuestions] = question
+    return <Question questionNum={numQuestions} question={question} />;
   };
 
   const deleteQuestion = () => {};
