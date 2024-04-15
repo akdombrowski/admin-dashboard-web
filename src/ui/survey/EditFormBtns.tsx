@@ -13,7 +13,7 @@ export default function EditFormBtns({
   handleAdd: () => void;
   handleSave: () => void;
   handlePublish: () => void;
-}): ReactNode {
+}) {
   return (
     <Grid container>
       <Grid xs={3}>
