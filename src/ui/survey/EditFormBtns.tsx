@@ -15,7 +15,7 @@ export default function EditFormBtns({
   handlePublish: () => void;
 }) {
   return (
-    <Grid container>
+    <Grid container justifyContent="space-between">
       <Grid xs={3}>
         <Button
           fullWidth
