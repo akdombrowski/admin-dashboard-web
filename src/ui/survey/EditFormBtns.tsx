@@ -1,19 +1,19 @@
-"use client";
-
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Unstable_Grid2";
+import type { ReactNode } from "react";
 
-interface EditFormBtnsProps {
-  handleAdd: () => void;
-  handleSave: () => void;
-  handlePublish: () => void;
-}
-
+/**
+ * TODO: since the handle___ fn's should always do the same thing for these buttons we don't need to pass them as arg's. instead we should just import them and call them. But, since they aren't ready for now, I'll leave it as a TODO
+ */
 export default function EditFormBtns({
   handleAdd,
   handleSave,
   handlePublish,
-}: EditFormBtnsProps) {
+}: {
+  handleAdd: () => void;
+  handleSave: () => void;
+  handlePublish: () => void;
+}): ReactNode {
   return (
     <Grid container>
       <Grid xs={3}>
