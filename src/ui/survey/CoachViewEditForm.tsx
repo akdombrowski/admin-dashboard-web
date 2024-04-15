@@ -20,16 +20,20 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Container from "@mui/material/Container";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
 
 import clientSubmit from "@/actions/survey/clientSubmit";
 import Question from "@/ui/survey/Question";
-import EditFormBtns from "@/ui/survey/EditFormBtns";
 
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import AddIcon from "@mui/icons-material/Add";
 import PublishIcon from "@mui/icons-material/Publish";
 import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+import { SyntheticEvent } from "react";
 
 const templateQuestions = [
   "Template Question #1",
@@ -37,25 +41,38 @@ const templateQuestions = [
   "Template Question #3",
 ];
 
-export default function EditSurveyForm() {
+export default function CoachViewEditForm() {
   const [questions, setQuestions] = useState<string[]>(templateQuestions);
 
-  const addQuestion = () => {
+  const handleAdd = () => {
     const newQNum = questions.length + 1;
 
-    const question = `Question ${newQNum}`;
+    const question = `Type in a question`;
     const quests = [...questions, question];
     setQuestions(quests);
-    return <Question questionNum={newQNum} question={question} />;
   };
 
-  const handleAdd = () => {};
+  const handleDelete = (e: SyntheticEvent) => {
+    setQuestions(
+      questions.filter((q, i) => {
+        console.log("e.currentTarget.id:", e.currentTarget.id);
+        console.log("i:", i);
+        console.log("q:", q);
+        return i !== Number(e.currentTarget.id) && q;
+      }),
+    );
+  };
 
-  const questionComponents = questions.map((q, i, qs) => {
-    return <Question key={`question-${i}`} questionNum={i} question={q} />;
+  const questionComponents = questions.map((q, i) => {
+    return (
+      <Question
+        key={`question-${i}`}
+        questionNum={i}
+        question={q}
+        handleDelete={handleDelete}
+      />
+    );
   });
-
-  const deleteQuestion = () => {};
 
   return (
     <Container id="editSurveyFormContainer" maxWidth="md">
@@ -113,7 +130,9 @@ export default function EditSurveyForm() {
             />
           </Grid>
 
-          {questionComponents}
+          <Grid xs={12}>
+            <Stack spacing={1}>{questionComponents}</Stack>
+          </Grid>
         </Grid>
 
         <Grid xs={12}>
@@ -150,7 +169,7 @@ export default function EditSurveyForm() {
             if (newValue === "save") {
               // call save fn
             } else if (newValue === "addQ") {
-              // ...
+              handleAdd();
             } // ...
           }}
         >
