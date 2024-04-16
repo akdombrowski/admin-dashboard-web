@@ -41,7 +41,6 @@ export default function Question({
             variant="subtitle1"
             fontSize=".75rem"
             sx={{ ...labelSX }}
-            color="rgb(255 255 255 / .5)"
           >
             {label}
           </Typography>
