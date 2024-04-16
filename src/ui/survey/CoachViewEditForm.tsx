@@ -45,8 +45,6 @@ export default function CoachViewEditForm() {
   const [questions, setQuestions] = useState<string[]>(templateQuestions);
 
   const handleAdd = () => {
-    const newQNum = questions.length + 1;
-
     const question = `Type in a question`;
     const quests = [...questions, question];
     setQuestions(quests);
