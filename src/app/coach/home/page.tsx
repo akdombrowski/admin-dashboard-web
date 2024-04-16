@@ -40,30 +40,50 @@ export default function HomePage() {
             Welcome to your <strong>Guide</strong> Home Page!
           </Typography>
         </Grid>
-        <Grid xs={12} container justifyContent="center" alignItems="stretch">
-          <Grid xs={6}>
+        <Grid
+          xs={12}
+          container
+          spacing={3}
+          justifyContent="center"
+          alignItems="stretch"
+        >
+          <Grid xs={12} sm={9} md={6}>
             <Card
               component={Stack}
               justifyContent="space-between"
               alignItems="stretch"
               sx={{ height: "100%" }}
             >
-              <CardActionArea component={Link} href="/coach/survey">
+              <CardActionArea
+                component={Link}
+                href="/coach/survey"
+                flexGrow={1}
+              >
                 <CardHeader
-                  title="Client Form"
-                  titleTypographyProps={{
-                    fontSize: titleFontSize,
-                    fontWeight: 700,
-                  }}
-                  subheader="Gather any info you need from your clients at any stage!"
-                  subheaderTypographyProps={{
-                    pt: 1,
-                    fontSize: subtitleFontSize,
-                    fontWeight: 100,
-                    textWrap: "nowrap",
-                    textOverflow: "ellipsis",
-                    overflow: "hidden",
-                  }}
+                  title={
+                    <Typography
+                      variant="h5"
+                      fontSize={titleFontSize}
+                      fontWeight={700}
+                    >
+                      Client Form
+                    </Typography>
+                  }
+                  subheader={
+                    <Typography
+                      fontSize={subtitleFontSize}
+                      fontWeight={300}
+                      pt={1}
+                      sx={{
+                        color: "rgb(255 255 255 / 0.75)",
+                        textWrap: "nowrap",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                      }}
+                    >
+                      Gather any info you need from your clients at any stage!"
+                    </Typography>
+                  }
                 />
                 <CardContent>
                   <Typography
@@ -71,7 +91,7 @@ export default function HomePage() {
                     fontSize={contentFontSize}
                     fontWeight={300}
                   >
-                    Viwe, Edit, and Configure the live status of your
+                    View, Edit, and Configure the live status of your
                     client-facing questionnaire.
                   </Typography>
                 </CardContent>
@@ -96,7 +116,7 @@ export default function HomePage() {
               </CardActions>
             </Card>
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={12} sm={9} md={6}>
             <Card
               component={Stack}
               sx={{
@@ -105,17 +125,28 @@ export default function HomePage() {
             >
               <CardActionArea component={Link} href="/users">
                 <CardHeader
-                  title="Client Data"
-                  titleTypographyProps={{
-                    fontSize: titleFontSize,
-                    fontWeight: 700,
-                  }}
-                  subheader="View client responses to help you decide how best to help each client!"
-                  subheaderTypographyProps={{
-                    pt: 1,
-                    fontSize: subtitleFontSize,
-                    fontWeight: 100,
-                  }}
+                  title={
+                    <Typography
+                      variant="h5"
+                      fontSize={titleFontSize}
+                      fontWeight={700}
+                    >
+                      Client Data
+                    </Typography>
+                  }
+                  subheader={
+                    <Typography
+                      fontSize={subtitleFontSize}
+                      fontWeight={300}
+                      pt={1}
+                      sx={{
+                        color: "rgb(255 255 255 / 0.75)",
+                      }}
+                    >
+                      View client responses to help you decide how best to help
+                      each client!
+                    </Typography>
+                  }
                 />
                 <CardContent>
                   <Typography
