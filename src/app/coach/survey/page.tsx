@@ -1,8 +1,6 @@
 import CoachViewEditForm from "@/ui/survey/CoachViewEditForm";
 
 import Grid from "@mui/material/Unstable_Grid2";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 export default function CoachSurvey() {
   return (

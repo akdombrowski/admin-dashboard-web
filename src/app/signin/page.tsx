@@ -30,7 +30,7 @@ export default async function SignInPage() {
     // } else {
     //   console.error(`API call failed with status: ${response.status}`);
     // }
-    redirect("/coach/survey");
+    redirect("/coach/home");
   }
 
   return (

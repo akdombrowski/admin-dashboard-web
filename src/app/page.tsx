@@ -4,6 +4,9 @@ import { redirect } from "next/navigation";
 
 export default async function LandingPage() {
   const session = await auth();
+  if (!session) {
+    redirect("/signin");
+  }
 
   const registerCoach = async (session: Session) => {
     try {
@@ -20,7 +23,7 @@ export default async function LandingPage() {
       );
 
       const data = await response.json();
-      const redirectPath = "/home";
+      const redirectPath = ("/coach/home");
       redirect(redirectPath);
     } catch (error) {
       /**
@@ -31,12 +34,5 @@ export default async function LandingPage() {
     }
   };
 
-  if (session) {
-    // TODO: where does this need to go
-    // registerCoach(session)
-
-    redirect("/home");
-  }
-
-  redirect("/signin");
+  redirect(("/coach/home"));
 }

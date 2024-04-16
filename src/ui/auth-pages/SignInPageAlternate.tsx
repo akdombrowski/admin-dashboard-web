@@ -21,7 +21,7 @@ export default async function SignInPageAlternate() {
   });
 
   if (session) {
-    redirect("/users");
+    redirect(("/coach/home"));
   }
 
   return (
